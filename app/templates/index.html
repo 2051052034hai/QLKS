@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+{% if phong %}
+    <div class="row">
+    {% for p in phong %}
+    <div class="col-md-3 col-sm-12" style="padding:1rem;">
+            <div class="card" style="width:400px">
+                <img class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ p.tenPhong }}</h4>
+                        <p class="card-text">{{ "{:,.1f}".format(p.donGia) }} VNĐ</p>
+
+                        <a href="javascript:;" onclick="addToCart({{ p.id }}, '{{ p.name }}', {{ p.price }})"
+                           class="btn btn-danger">Đặt Phòng</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <p class="text-danger">Không có sản phẩm nào!</p>
+        {% endif %}
+        {%endblock %}
+
