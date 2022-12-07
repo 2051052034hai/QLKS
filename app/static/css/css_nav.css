@@ -1,0 +1,28 @@
+nav.navbar-dark{
+    background-color: white !important;
+}
+
+ul.me-auto{
+width: 100%;
+justify-content: space-between;
+}
+li.nav-item > a{
+    color: black;
+    font-weight: bold;
+}
+li.nav-item > a:hover{
+    color: #FFCC33 !important;
+}
+
+div.dropdown > button{
+    color:black !important;
+    font-weight: bold !important;
+    background-color: white;
+    border: 1px solid white;
+}
+
+ div.dropdown > button:hover{
+   background-color:white !important;
+   border: 1px solid white !important;
+   color:#FFCC33 !important;
+}

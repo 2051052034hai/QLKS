@@ -1,0 +1,112 @@
+/*css phan chung */
+div.container{
+    max-width:100% !important;
+}
+/*DUOI DAY LA CSS CHO PHAN ANH TRANG TRI*/
+*{
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+div.all-template{
+   display:flex;
+   flex-wrap: nowrap;
+   padding:0.1%;
+   /* justify-content: space-between; */
+}
+
+div.all-block{
+ width: 25%;
+ padding:1%;
+ background-color:
+ #EEEEEE;
+ margin: 0.5%;
+ position: relative;
+}
+
+
+div.all-picture{
+    width: 100%;
+
+}
+
+div.all-picture > img{
+    width: 100%;
+}
+
+div.content > h2{
+    font-size:20px;
+    padding:5px;
+    margin-left: 30%;
+
+    margin-right: 20%;
+}
+div.content > h1{
+    color:#5e3929;
+    margin-top: -50px;
+    padding-left: 10%;
+}
+div.content > p.year{
+    color:#5e3929;
+    font-size:25px;
+    margin-top: -19px;
+
+}
+
+div.content > p.ct{
+    margin-top:-12px;
+    text-align: justify;
+    margin-bottom: 0px;
+}
+div.content > a{
+    color:#5e3929;
+    text-decoration: none;
+    transition:all 2s;
+}
+div.content > a:hover{
+    text-decoration:underline;
+}
+div.text-content{
+    background-color:white !important;
+    width: 20%;
+}
+div.new-text{
+    transform: rotate(-90deg);
+
+}
+div.new-text > h1{
+    font-size: border;
+    font-size:100px;
+    color:#5e3929;
+    text-align: center;
+    margin-top:60%;
+}
+
+
+/*DƯỚI ĐÂY LÀ CSS CHO PHAN MAPS*/
+
+div.all-maps{
+    display: flex;
+    margin:0px;
+    padding: 1%;
+}
+div.all-maps > div.map-content{
+    width: 30%;
+    background-color:#CCCCCC;
+}
+div.all-maps > div.map{
+    width: 100%;
+}
+
+div.map-content {
+    padding:0.5%;
+}
+div.map-content > ul{
+    color:#5e3929;
+    list-style: none;
+}
+div.map-content > h2{
+    color:#5e3929;
+    font-size: 20px;
+    text-align:center;
+}

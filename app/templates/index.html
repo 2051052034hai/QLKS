@@ -2,25 +2,120 @@
 
 {% block content %}
 {% if phong %}
-    <div class="row">
+<div class="row">
     {% for p in phong %}
     <div class="col-md-3 col-sm-12" style="padding:1rem;">
-            <div class="card" style="width:400px">
-                <img class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ p.tenPhong }}</h4>
-                        <p class="card-text">{{ "{:,.1f}".format(p.donGia) }} VNĐ</p>
+        <div class="card" style="width:400px">
+            <img class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
+            <div class="card-body">
+                <h4 class="card-title">{{ p.tenPhong }}</h4>
+                <p class="card-text">{{ "{:,.1f}".format(p.donGia) }} VNĐ</p>
 
-                        <a href="javascript:;" onclick="addToCart({{ p.id }}, '{{ p.name }}', {{ p.price }})"
-                           class="btn btn-danger">Đặt Phòng</a>
-                    </div>
-                </div>
+                <a href="javascript:;" onclick="addToCart({{ p.id }}, '{{ p.name }}', {{ p.price }})"
+                   class="btn btn-danger">Đặt Phòng</a>
             </div>
-            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<p class="text-danger">Không có sản phẩm nào!</p>
+{% endif %}
+
+<!--        Đây là phần ảnh trang tri them cho trang chủ-->
+
+<div class="all-template">
+
+    <div class="all-block">
+        <div class="all-picture">
+            <img src="{{url_for('static', filename='image/anh_dep_kk.jpg')}}" alt="New York" class="d-block w-100">
         </div>
 
-        {% else %}
-        <p class="text-danger">Không có sản phẩm nào!</p>
-        {% endif %}
-        {%endblock %}
+        <div class="content">
+            <h2>​QUOC TU GIAM TEMPLE</h2>
+            <h1>30</h1>
+            <p class="year">November</p>
+            <p class="ct">
+                If you name the top tourist attractions in Hanoi in the past and now, perhaps everyone will
+                immediately think of Van Mieu Quoc Tu Giam. This is a leading cultural and architectural complex
+                and is the pride of the people of the capital when it comes to the thousand-year-old tradition of Thang
+                Long - Dong Do - Hanoi.
+            </p>
+            <a href="#">Read more -></a>
+        </div>
+    </div>
+
+    <div class="all-block">
+        <div class="all-picture">
+            <img src="{{url_for('static', filename='image/anh_dep_kk.jpg')}}" alt="New York" class="d-block w-100">
+        </div>
+
+        <div class="content">
+            <h2>​QUOC TU GIAM TEMPLE</h2>
+            <h1>30</h1>
+            <p class="year">November</p>
+            <p class="ct">
+                If you name the top tourist attractions in Hanoi in the past and now, perhaps everyone will
+                immediately think of Van Mieu Quoc Tu Giam. This is a leading cultural and architectural complex
+                and is the pride of the people of the capital when it comes to the thousand-year-old tradition of Thang
+                Long - Dong Do - Hanoi.
+            </p>
+            <a href="#">Read more -></a>
+        </div>
+    </div>
+
+    <div class="all-block">
+        <div class="all-picture">
+            <img src="{{url_for('static', filename='image/anh_dep_kk.jpg')}}" alt="New York" class="d-block w-100">
+        </div>
+
+        <div class="content">
+            <h2>​QUOC TU GIAM TEMPLE</h2>
+            <h1>30</h1>
+            <p class="year">November</p>
+            <p class="ct">
+                If you name the top tourist attractions in Hanoi in the past and now, perhaps everyone will
+                immediately think of Van Mieu Quoc Tu Giam. This is a leading cultural and architectural complex
+                and is the pride of the people of the capital when it comes to the thousand-year-old tradition of Thang
+                Long - Dong Do - Hanoi.
+            </p>
+            <a href="#">Read more -></a>
+        </div>
+    </div>
+
+    <div class="all-block text-content">
+        <div class="new-text">
+            <h1>NEWS</h1>
+        </div>
+    </div>
+</div>
+
+
+
+ <!--Đây là phần code google map của trang chủ-->
+        <div class = "all-maps">
+        <div class = "map-content">
+          <h2>KHÁCH SẠN IT03</h2>
+          <ul>
+            <li>
+              14/9, Đào Duy Anh, P9, Quận Phú Nhuận, TP-HCM
+            </li>
+            <li>
+              0865028574
+            </li>
+            <li>
+              infor@gmail.com
+            </li>
+            <li>
+             khachsan@gmail.com
+            </li>
+          </ul>
+        </div>
+      <div class = "map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.027261048951!2d105.85278101429789!3d21.031595193058884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab67043a3a67%3A0x57709992fecadcf!2sLa%20Nueva%20Boutique%20Hotel%20Hanoi!5e0!3m2!1svi!2s!4v1637210814564!5m2!1svi!2s"
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+{%endblock %}
 

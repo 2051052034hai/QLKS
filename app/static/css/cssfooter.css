@@ -1,0 +1,32 @@
+div.all-footer{
+    background-color:#5e3929;
+    padding:3%;
+}
+
+div.all-content{
+    display:flex;
+    padding:1%;
+    text-align: center;
+}
+div.all-content > div{
+    width: 50%;
+}
+div.all-content > div > a{
+    font:bold;
+    color:white;
+    text-decoration:none;
+}
+
+
+
+div.all-footer > h3 {
+   padding-top:2%;
+   font-size:15px;
+    text-align:center;
+    font:bold;
+    color:white;
+}
+div.all-footer > h3 > a{
+    text-decoration:none;
+
+}
