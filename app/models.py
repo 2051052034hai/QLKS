@@ -10,7 +10,15 @@ class UserRoleEnum(UserEnum):
     EMPLOYEE = 1
     ADMIN = 2
 
-
+class User():
+    name=Column(String(50),nullable=False)
+    username=Column(String(50),nullable=False)
+    password=Column(String(50),nullable=False)
+    avatar=Column(String(100))
+    active=Column(Boolean,default=True)
+    user_role=Column(Enum(UserRoleEnum),default=UserRoleEnum.EMPLOYEE)
+    def __str__(self):
+        return self.name
 class BaseModel(db.Model):
     __abstract__ = True
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -106,14 +114,14 @@ class User(BaseModel, UserMixin):
 
 if __name__ == '__main__':
     with app.app_context():
-        #db.create_all()
-        # lp1 = LoaiPhong(name='Phòng gia đình')
-        # lp2 = LoaiPhong(name='Phòng cổ điển')
-        # lp3 = LoaiPhong(name='Phòng cơ sở')
-        # lp4 = LoaiPhong(name='Phòng điều hành')
-        #
-        # db.session.add_all([lp1, lp2, lp3])
-        # db.session.commit()
+        # db.create_all()
+        lp1 = LoaiPhong(name='Phòng gia đình')
+        lp2 = LoaiPhong(name='Phòng cổ điển')
+        lp3 = LoaiPhong(name='Phòng cơ sở')
+        lp4 = LoaiPhong(name='Phòng điều hành')
+
+        db.session.add_all([lp1, lp2, lp3])
+        db.session.commit()
 
         p1 = Phong(tenPhong="Phòng gia đình", moTa='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
                    donGia=3000000,
@@ -132,4 +140,10 @@ if __name__ == '__main__':
         db.session.add(p1)
         db.session.add(p2)
         db.session.add(p3)
+        db.session.commit()
+
+        import hashlib
+        password=str(hashlib.md5('123456'.encode('utf-8')).hexdigest())
+        U= User(name='VA1', email='dasdfjosa@gmail.com',username='admin',password=password,user_role=UserRoleEnum.ADMIN,active=1)
+        db.session.add(U)
         db.session.commit()
