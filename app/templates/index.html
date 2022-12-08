@@ -67,13 +67,13 @@
 <div class="row" style="margin-top:0px">
     {% for p in phong %}
     <div class="col-md-3 col-sm-12" style="padding:1rem;margin:10px">
-        <div class="card" style="width:400px;">
+        <div class="card">
             <img class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
             <div class="card-body">
                 <h4 class="card-title">{{ p.tenPhong }}</h4>
                 <p class="card-text">{{ "{:,.1f}".format(p.donGia) }} VNĐ</p>
                 <p class="card-text">{{p.moTa}}</p>
-                <a href="{{url_for('phong_detail', phong_id = p.id)}}" class="btn btn-danger">Đặt Phòng</a>
+                <a href="{{url_for('phong_detail', phong_id = p.id)}}" class="btn btn-danger">Đặt bây giờ</a>
 
             </div>
         </div>
@@ -82,7 +82,7 @@
 </div>
 
 {% else %}
-<p class="text-danger">Không có sản phẩm nào!</p>
+<p class="text-danger">Loại phòng này đã hết!</p>
 {% endif %}
 
 
@@ -90,70 +90,133 @@
 
 <!-- Đây là phần ảnh trang tri them cho trang chủ-->
 
-<div class="all-template">
+ <div class="all-template" >
 
-    <div class="all-block">
+        <div class="all-block">
         <div class="all-picture">
-            <img src="{{url_for('static', filename='image/anh_dep_kk.jpg')}}" alt="New York" class="d-block w-100">
+          <img src="{{url_for('static', filename = 'image/anh_dep_kk.jpg')}}" alt="New York" class="d-block w-100">
         </div>
 
         <div class="content">
-            <h2>​QUOC TU GIAM TEMPLE</h2>
+            <h2>​VIỆT QUỐC TỰ GIÁM</h2>
             <h1>30</h1>
-            <p class="year">November</p>
-            <p class="ct">
-                If you name the top tourist attractions in Hanoi in the past and now, perhaps everyone will
-                immediately think of Van Mieu Quoc Tu Giam. This is a leading cultural and architectural complex
-                and is the pride of the people of the capital when it comes to the thousand-year-old tradition of Thang
-                Long - Dong Do - Hanoi.
-            </p>
-            <a href="#">Read more -></a>
+            <p class="year">Tháng MƯỜI MỘT</p>
+            <p class ="ct">
+              Nếu muốn tìm hiểu về cuộc sống, văn hóa và con người Tràng An thì bạn không nên bỏ qua phố cổ – một trong những địa điểm du lịch Hà Nội đầy thú vị và hấp dẫn du khách.
+             Phố cổ Hà Nội nằm về phía Tây và phía Bắc của hồ Hoàn Kiếm, là nơi tập trung đông dân cư với 36 phố phường.
+          </p>
+          <a href="#">Đọc Thêm -></a>
         </div>
-    </div>
+      </div>
 
-    <div class="all-block">
+      <div class="all-block">
         <div class="all-picture">
-            <img src="{{url_for('static', filename='image/anh_dep_kk.jpg')}}" alt="New York" class="d-block w-100">
+          <img src="{{url_for('static', filename = 'image/anh2.jpg')}}" alt="New York" class="d-block w-100">
         </div>
 
         <div class="content">
-            <h2>​QUOC TU GIAM TEMPLE</h2>
+            <h2>​ĐỊA LÝ - YẾU TỐ VĂN HÓA</h2>
             <h1>30</h1>
-            <p class="year">November</p>
-            <p class="ct">
-                If you name the top tourist attractions in Hanoi in the past and now, perhaps everyone will
-                immediately think of Van Mieu Quoc Tu Giam. This is a leading cultural and architectural complex
-                and is the pride of the people of the capital when it comes to the thousand-year-old tradition of Thang
-                Long - Dong Do - Hanoi.
-            </p>
-            <a href="#">Read more -></a>
-        </div>
-    </div>
+            <p class="year">THÁNG TÁM</p>
+            <p class ="ct">
 
-    <div class="all-block">
+              Nếu muốn tìm hiểu về cuộc sống, văn hóa và con người Tràng An thì bạn không nên bỏ qua phố cổ – một trong những địa điểm du lịch Hà Nội đầy thú vị và hấp dẫn du khách.
+              Phố cổ Hà Nội nằm về phía Tây và phía Bắc của hồ Hoàn Kiếm, là nơi tập trung đông dân cư với 36 phố phường.
+          </p>
+          <a href="#">Đọc Thêm -></a>
+        </div>
+      </div>
+
+      <div class="all-block">
         <div class="all-picture">
-            <img src="{{url_for('static', filename='image/anh_dep_kk.jpg')}}" alt="New York" class="d-block w-100">
+          <img src="{{url_for('static', filename = 'image/anh3.jpg')}}" alt="New York" class="d-block w-100">
         </div>
 
         <div class="content">
-            <h2>​QUOC TU GIAM TEMPLE</h2>
+            <h2>LỄ HỘI NGHINH ÔNG</h2>
             <h1>30</h1>
-            <p class="year">November</p>
-            <p class="ct">
-                If you name the top tourist attractions in Hanoi in the past and now, perhaps everyone will
-                immediately think of Van Mieu Quoc Tu Giam. This is a leading cultural and architectural complex
-                and is the pride of the people of the capital when it comes to the thousand-year-old tradition of Thang
-                Long - Dong Do - Hanoi.
-            </p>
-            <a href="#">Read more -></a>
+            <p class="year">THÁNG TÁM</p>
+            <p class ="ct">
+              Nếu muốn tìm hiểu về cuộc sống, văn hóa và con người Tràng An thì bạn không nên bỏ qua phố cổ – một trong những địa điểm du lịch Hà Nội đầy thú vị và hấp dẫn du khách.
+              Phố cổ Hà Nội nằm về phía Tây và phía Bắc của hồ Hoàn Kiếm, là nơi tập trung đông dân cư với 36 phố phường.
+          </p>
+          <a href="#">Đọc Thêm -></a>
         </div>
-    </div>
+      </div>
 
-    <div class="all-block text-content">
-        <div class="new-text">
-            <h1>NEWS</h1>
+      <div class = "all-block text-content">
+
+        <div class = "new-text">
+          <h1>TIN TỨC</h1>
         </div>
-    </div>
+
+      </div>
+</div>
+
+<div class="all-template template-revere container-web wow animate__fadeIn animate__slower	3s">
+
+  <div class="all-block">
+  <div class="all-picture">
+    <img src="{{url_for('static', filename = 'image/anh4.jpg')}}" alt="New York" class="d-block w-100">
+  </div>
+
+  <div class="content">
+      <h2>LỄ HỘI TRUNG CỬU ĐỘC ĐÁO TẠI TP VŨNG TÀU</h2>
+      <h1>30</h1>
+      <p class="year">November</p>
+      <p class ="ct">
+        Nếu muốn tìm hiểu về cuộc sống, văn hóa và con người Tràng An thì bạn không nên bỏ qua phố cổ – một trong những địa điểm du lịch Hà Nội đầy thú vị và hấp dẫn du khách.
+        Phố cổ Hà Nội nằm về phía Tây và phía Bắc của hồ Hoàn Kiếm, là nơi tập trung đông dân cư với 36 phố phường.
+    </p>
+    <a href="#">Đọc Thêm -></a>
+  </div>
+</div>
+
+<div class="all-block">
+  <div class="all-picture">
+    <img src="{{url_for('static', filename = 'image/anh5.jpg')}}" alt="New York" class="d-block w-100">
+  </div>
+
+  <div class="content">
+      <h2>​​PHỐ CỔ HÀ NỘI - ĐIỂM DU LỊCH HẤP DẪN</h2>
+      <h1>30</h1>
+      <p class="year">THÁNG MƯỜI MỘT</p>
+      <p class ="ct">
+
+        Nếu muốn tìm hiểu về cuộc sống, văn hóa và con người Tràng An thì bạn không nên bỏ qua phố cổ – một trong những địa điểm du lịch Hà Nội đầy thú vị và hấp dẫn du khách.
+        Phố cổ Hà Nội nằm về phía Tây và phía Bắc của hồ Hoàn Kiếm, là nơi tập trung đông dân cư với 36 phố phường.
+
+    </p>
+    <a href="#">Đọc Thêm -></a>
+  </div>
+</div>
+
+<div class="all-block">
+  <div class="all-picture">
+    <img src="{{url_for('static', filename = 'image/anh6.jpg')}}" alt="New York" class="d-block w-100">
+  </div>
+
+  <div class="content">
+      <h2>LỄ HỘI CHÙA BÀ NGŨ HẠNH</h2>
+      <h1>30</h1>
+      <p class="year">THÁNG MƯỜI HAI</p>
+      <p class ="ct">
+
+        Nếu muốn tìm hiểu về cuộc sống, văn hóa và con người Tràng An thì bạn không nên bỏ qua phố cổ – một trong những địa điểm du lịch Hà Nội đầy thú vị và hấp dẫn du khách.
+        Phố cổ Hà Nội nằm về phía Tây và phía Bắc của hồ Hoàn Kiếm, là nơi tập trung đông dân cư với 36 phố phường.
+
+    </p>
+    <a href="#">Đọc Thêm -></a>
+  </div>
+</div>
+
+<div class = "all-block text-content">
+
+  <div class = "new-text event">
+    <h1>SỰ KIỆN</h1>
+  </div>
+
+</div>
 </div>
 
 

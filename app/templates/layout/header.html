@@ -1,41 +1,62 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">TRANG CHỦ</a>
-                </li>
+<!--<nav class="navbar navbar-expand-sm bg-dark navbar-dark">-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="collapse navbar-collapse" id="collapsibleNavbar">-->
+<!--            <ul class="navbar-nav me-auto">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/">TRANG CHỦ</a>-->
+<!--                </li>-->
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">VỀ CHÚNG TÔI </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">PHÒNG VÀ DÃY PHÒNG</a>
-                    <ul class="dropdown-menu">
-                        {% for l in loaiphong  %}
-                          <li><a class="dropdown-item" href="{{url_for('index',loaiPhong_id = l.id)}}">{{l.name}}</a></li>
-                        {%endfor%}
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">ĂN UỐNG VÀ TRẢI NGHIỆM </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">TIN TỨC VÀ SỰ KIỆN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">DỊCH VỤ TOUR</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">PHÒNG TRƯNG BÀY</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">TIẾP XÚC</a>
-                </li>
-            </ul>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">VỀ CHÚNG TÔI </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">PHÒNG VÀ DÃY PHÒNG</a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        {% for l in loaiphong  %}-->
+<!--                          <li><a class="dropdown-item" href="{{url_for('index',loaiPhong_id = l.id)}}">{{l.name}}</a></li>-->
+<!--                        {%endfor%}-->
+<!--                    </ul>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">ĂN UỐNG VÀ TRẢI NGHIỆM </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">TIN TỨC VÀ SỰ KIỆN</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">DỊCH VỤ TOUR</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">PHÒNG TRƯNG BÀY</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">TIẾP XÚC</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+
+
+    <nav>
+        <div class="nav-tieu-de">
+            <h2>Quản Lý Khách Sạn</h2>
         </div>
-    </div>
-</nav>
-
-
+        <ul>
+            <li><a href=""><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+            <li><a href=""><i class="fa fa-calendar" aria-hidden="true"></i> Book Room</a></li>
+            <div class ="dropdown">
+            <li><a href=""><i class="fa fa-address-book-o"aria-hidden="true"></i> List Room</a></li>
+            <div class="dropdown-content">
+                 {% for l in loaiphong  %}
+                 <a href="{{url_for('index',loaiPhong_id = l.id)}}">{{l.name}}</a>
+                  {%endfor%}
+            </div>
+            </div>
+            <li><a href=""><i class="fa fa-telegram" aria-hidden="true"></i> News</a></li>
+            <li><a href=""><i class="fa fa-globe" aria-hidden="true"></i> English</a></li>
+            <li><a href=""><i class="fa fa-info" aria-hidden="true"></i> About Us</a></li>
+        </ul>
+    </nav>
 
