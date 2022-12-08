@@ -1,7 +1,7 @@
 import math
 
 from flask import Flask, render_template, request, redirect
-from app import app, dao
+from app import app, dao,login
 from flask_login import login_user, logout_user, login_required, current_user
 from app.decorators import annonymous_user
 from app.admin import *
@@ -44,6 +44,18 @@ def login_my_user():
 
     return render_template('login.html')
 
+@app.route('/login-admin',methods=['post'])
+def login_admin():
+    username=request.form['username']
+    password=request.form['password']
+
+    user= dao.auth_user(username=username,password=password)
+    if user:
+        login_user(user=user)
+    return redirect('/admin')
+@login.user_loader
+def load_user(user_id):
+    return dao.get_user_by_id(user_id)
 
 if __name__ == '__main__':
     app.run(debug=True)
