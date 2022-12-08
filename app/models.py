@@ -4,63 +4,69 @@ from app import db, app
 from datetime import datetime
 from enum import Enum as UserEnum
 from flask_login import UserMixin
+
+
 class UserRoleEnum(UserEnum):
     EMPLOYEE = 1
     ADMIN = 2
-# class nav_category(db.Model):
-#     name = Column
+
 
 class BaseModel(db.Model):
     __abstract__ = True
     id = Column(Integer, primary_key=True, autoincrement=True)
 
+
 class BaseModel2(db.Model):
     __abstract__ = True
     id = Column(String(50), primary_key=True)
+
 
 class LoaiPhong(BaseModel):
     name = Column(String(50), nullable=False)
     phong = relationship('Phong', backref='LoaiPhong', lazy=False)
 
     def __str__(self):
-            return self.name
+        return self.name
+
 
 class Phong(BaseModel):
     tenPhong = Column(String(50), nullable=False)
     tinhTrang = Column(Boolean, default=True)
     maLoaiPhong = Column(Integer, ForeignKey(LoaiPhong.id), nullable=False)
-<<<<<<< HEAD
-    maPhong = relationship('PhieuDatPhong', backref='Phong', lazy=False)
-=======
     P_PDP = relationship('PhieuDatPhong', backref='Phong', lazy=False)
->>>>>>> 7f17114986f2a4859fd66d5d14ec6663893b5b5a
     donGia = Column(Float, default=0)
     image = Column(String(100))
     moTa = Column(Text)
+
     def __str__(self):
         return self.tenPhong
 
+
 class PhieuDatPhong(BaseModel):
-    ngayNhanPhong=Column(DateTime,default=datetime.now())
-    ngayTraPhong= Column(DateTime)
-    maPhong=Column(Integer,ForeignKey(Phong.id),nullable=False)
-    PDP_CTPD=relationship('ChiTietPhieuDat',backref='PhieuDatPhong',lazy=False)
+    ngayNhanPhong = Column(DateTime, default=datetime.now())
+    ngayTraPhong = Column(DateTime)
+    maPhong = Column(Integer, ForeignKey(Phong.id), nullable=False)
+    PDP_CTPD = relationship('ChiTietPhieuDat', backref='PhieuDatPhong', lazy=False)
+
     def __str__(self):
         return self.ngayNhanPhong
+
+
 class LoaiKhach(BaseModel):
-    tenLoaiKhach=Column(String(30))
+    tenLoaiKhach = Column(String(30))
     khachhang = relationship('KhachHang', backref='LoaiKhach', lazy=False)
+
     def __str__(self):
         return self.tenLoaiKhach
 
 
-
 class KhachHang(BaseModel):
-    tenKhachHang=Column(String(30),nullable=False)
-    diaChi= Column(String(100))
-    cmnd= Column(String(20))
-    maLoaiKhach= Column(Integer,ForeignKey(LoaiKhach.id),nullable=False)
-    KH_CTPD= relationship('ChiTietPhieuDat', backref='KhachHang',lazy=False)
+    tenKhachHang = Column(String(30), nullable=False)
+    diaChi = Column(String(100))
+    cmnd = Column(String(20))
+    maLoaiKhach = Column(Integer, ForeignKey(LoaiKhach.id), nullable=False)
+    KH_CTPD = relationship('ChiTietPhieuDat', backref='KhachHang', lazy=False)
+
     def __str__(self):
         return self.tenKhachHang
 
@@ -68,17 +74,22 @@ class KhachHang(BaseModel):
 class ChiTietPhieuDat(BaseModel):
     maKhachHang = Column(Integer, ForeignKey(KhachHang.id), nullable=False, primary_key=True)
     maPhieuDat = Column(Integer, ForeignKey(PhieuDatPhong.id), nullable=False, primary_key=True)
-    CTPD_CTHD=relationship('ChiTietHoaDon',backref='ChiTietPhieuDat',lazy=False)
+    CTPD_CTHD = relationship('ChiTietHoaDon', backref='ChiTietPhieuDat', lazy=False)
+
+
 class HoaDon(BaseModel):
-    ngayThanhToan=Column(DateTime,default=datetime.now())
-    triGia=Column(Float,nullable=False)
-    HD_CTHD=relationship('ChiTietHoaDon',backref='HoaDon',lazy=False)
+    ngayThanhToan = Column(DateTime, default=datetime.now())
+    triGia = Column(Float, nullable=False)
+    HD_CTHD = relationship('ChiTietHoaDon', backref='HoaDon', lazy=False)
+
+
 class ChiTietHoaDon(BaseModel):
-    soNgayThue=Column(Integer,default=False)
-    donGia=Column(Float)
-    tongTien=Column(Float)
-    maHoaDon=Column(Integer,ForeignKey(HoaDon.id),nullable=False)
-    maChiTietPhieuDat=Column(Integer,ForeignKey(ChiTietPhieuDat.id),nullable=False)
+    soNgayThue = Column(Integer, default=False)
+    donGia = Column(Float)
+    tongTien = Column(Float)
+    maHoaDon = Column(Integer, ForeignKey(HoaDon.id), nullable=False)
+    maChiTietPhieuDat = Column(Integer, ForeignKey(ChiTietPhieuDat.id), nullable=False)
+
 
 class User(BaseModel, UserMixin):
     name = Column(String(50), nullable=False)
@@ -92,41 +103,10 @@ class User(BaseModel, UserMixin):
     def __str__(self):
         return self.name
 
-<<<<<<< HEAD
-class KhachHang(BaseModel2):
-    tenKhachHang = Column(String(50), nullable=False)
-    diaChi = Column(String(50), nullable=False)
-    cmnd = Column(String(50), nullable=False)
-    # maLoaiKhach = Column(Integer, ForeignKey(LoaiKhach.id), nullable=False)
-    CTPD_KhachHang = relationship('ChiTietPhieuDat', backref='KhachHang', lazy=True)
 
-    def __str__(self):
-        return self.name
-
-
-class PhieuDatPhong(BaseModel2):
-    ngayNhanPhong = Column(DateTime, default=datetime.now())
-    # ngayTraPhong = Column(DateTime)
-    stt = Column(Integer, autoincrement=True)
-    maPhong = Column(Integer, ForeignKey(Phong.id), nullable=False)
-    CTPD_PDP = relationship('ChiTietPhieuDat', backref='PhieuDatPhong', lazy=True)
-
-    def __str__(self):
-        return self.name
-
-class ChiTietPhieuDat(BaseModel2):
-    maKhachHang = Column(String(50), ForeignKey(KhachHang.id), nullable=False)
-    maPhieuDat = Column(String(50), ForeignKey(PhieuDatPhong.id), nullable=False)
-
-
-    def __str__(self):
-        return self.name
-
-=======
->>>>>>> 7f17114986f2a4859fd66d5d14ec6663893b5b5a
 if __name__ == '__main__':
     with app.app_context():
-        # db.create_all()
+        #db.create_all()
         # lp1 = LoaiPhong(name='Phòng gia đình')
         # lp2 = LoaiPhong(name='Phòng cổ điển')
         # lp3 = LoaiPhong(name='Phòng cơ sở')
@@ -134,13 +114,11 @@ if __name__ == '__main__':
         #
         # db.session.add_all([lp1, lp2, lp3])
         # db.session.commit()
-        #
+
         p1 = Phong(tenPhong="Phòng gia đình", moTa='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
                    donGia=3000000,
                    image='https://res.cloudinary.com/dcteoaxmv/image/upload/v1670237774/Family_tviwwj.jpg',
                    maLoaiPhong=1)
-
-<<<<<<< HEAD
         p2 = Phong(tenPhong="Phòng cơ sở", moTa='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
                    donGia=4000000,
                    image='https://res.cloudinary.com/dcteoaxmv/image/upload/v1670237774/Family_tviwwj.jpg',
@@ -154,21 +132,4 @@ if __name__ == '__main__':
         db.session.add(p1)
         db.session.add(p2)
         db.session.add(p3)
-
         db.session.commit()
-=======
-        # p2 = Phong(tenPhong="Phòng cơ sở", moTa='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
-        #            donGia=4000000,
-        #            image='https://res.cloudinary.com/dcteoaxmv/image/upload/v1670237774/Family_tviwwj.jpg',
-        #            maLoaiPhong=3)
-        #
-        # p3 = Phong(tenPhong="Phòng cổ điển", moTa='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
-        #            donGia=4000000,
-        #            image='https://res.cloudinary.com/dcteoaxmv/image/upload/v1670237774/Family_tviwwj.jpg',
-        #            maLoaiPhong=2)
-        #
-        # db.session.add(p1)
-        # db.session.add(p2)
-        # db.session.add(p3)
-        # db.session.commit()
->>>>>>> 7f17114986f2a4859fd66d5d14ec6663893b5b5a

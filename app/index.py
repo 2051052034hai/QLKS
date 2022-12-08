@@ -1,15 +1,32 @@
-from flask import Flask, render_template, request,redirect
+import math
+
+from flask import Flask, render_template, request, redirect
 from app import app, dao
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from app.decorators import annonymous_user
 from app.admin import *
+
+
 @app.route("/")
 def index():
     ma_lp = request.args.get('maLoaiPhong')
-    kw = request.args.get('Keyword')
-    phong = dao.load_Phong(ma_lp=ma_lp, kw=kw)
+    lp_id = request.args.get('loaiPhong_id')
+    page = request.args.get('page', 1)
+    phong = dao.load_Phong(ma_lp=ma_lp, lp = lp_id, page= int(page))
     loaiphong = dao.load_LoaiPhong()
-    return render_template('index.html', phong=phong, loaiphong = loaiphong)
+    couter = dao.count_phong()
+    return render_template('index.html',
+                           phong=phong,
+                           loaiphong=loaiphong,
+                           pages = math.ceil(couter/app.config['PAGE_SIZE']))
+
+
+@app.route("/phong/<int:phong_id>")
+def phong_detail(phong_id):
+    phong = dao.get_phong_by_id(phong_id)
+
+    return render_template('phong_detail.html', p=phong)
+
 
 @annonymous_user
 def login_my_user():
@@ -29,5 +46,4 @@ def login_my_user():
 
 
 if __name__ == '__main__':
-
     app.run(debug=True)

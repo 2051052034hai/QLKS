@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+
+{%block title%} CHI TIET DAT PHONG {%endblock%}
+
+{% block content %}
+
+<div class="row" style="margin-top:50px; margin-bottom:50px">
+    <div class="col-md-5 col-xs-12">
+        <img class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
+    </div>
+
+    <div class="col-md-7 col-xs-12">
+        <h4 class="card-title">{{ p.tenPhong }}</h4>
+        <p class="card-text">{{ "{:,.1f}".format(p.donGia) }} VNĐ</p>
+        <p class="card-text">{{p.moTa}}</p>
+        <a href="javascript:;" onclick="addToCart({{ p.id }}, '{{ p.name }}', {{ p.price }})"
+           class="btn btn-danger">Đặt Phòng</a>
+
+    </div>
+</div>
+
+    <div class="form-group">
+        <textarea style="width:100%" class="from-control">Nhập nội dung bình luâận...</textarea>
+    </div>
+    <input type="button" class="btn btn-primary" value="Bình luận">
+
+
+     <div class="row comment" style="margin-top:30px" >
+         <div class="col-md-1 col-xs-4">
+                <img src="{{url_for('static', filename = 'image/avatar.jfif')}}" class="img-fluid rounded-circle" alt = "demo">
+         </div>
+          <div class="col-md-11  col-xs-8">
+                <p>San pham tuyet voi</p>
+              <p><em>2021-12-07 9:47</em></p>
+         </div>
+
+{% endblock %}
+
+
+

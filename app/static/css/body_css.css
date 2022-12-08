@@ -1,9 +1,7 @@
 /*css phan chung */
-div.container{
-    max-width:100% !important;
-}
 /*DUOI DAY LA CSS CHO PHAN ANH TRANG TRI*/
 *{
+    max-width:100%;
     box-sizing: border-box;
     font-family:Arial, Helvetica, sans-serif
 }
