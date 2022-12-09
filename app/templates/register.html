@@ -1,0 +1,49 @@
+{% extends 'layout/base.html'%}
+{% block content %}
+
+<div class="container" style="margin-top:100px; margin-bottom:50px" >
+  <h1 class="text-center text-danger">Đăng KÝ Người Dùng</h1>
+    {%if err_msg %}
+        <h3 class="text-center text-danger">{{err_msg}}</h3>
+    {% endif %}
+  <form method="post" action="{{url_for('user_register')}}" enctype="multipart/form-data">
+    <div class="form-group">
+          <label for = "name">Họ Tên: </label>
+          <input type="text" class="form-control" id ="name" name = "name">
+    </div>
+      <div class="form-group">
+          <label for = "adress">Địa Chỉ: </label>
+          <input type="text" class="form-control" id ="adress" name = "adress">
+    </div>
+      <div class="form-group">
+          <label for = "cmnd">Số Chứng Minh Nhân Dân: </label>
+          <input type="text" class="form-control" id ="cmnd" name = "cmnd" required>
+    </div>
+      <div class="form-group">
+          <label for = "username">Tên Đăng Nhập: </label>
+          <input type="text" class="form-control" id ="username" name = "username" required>
+    </div>
+      <div class="form-group">
+          <label for = "Email">Email: </label>
+          <input type="text" class="form-control" id ="Email" name = "Email" required>
+    </div>
+       <div class="form-group">
+          <label for = "password">Mật Khẩu: </label>
+          <input type="password" class="form-control" id ="password" name = "password" required>
+        </div>
+
+       <div class="form-group">
+          <label for = "cofirm">Xác Nhận Mật Khẩu: </label>
+          <input type="password" class="form-control" id ="cofirm" name = "cofirm" required>
+        </div>
+
+        <div class="form-group">
+          <label for = "avatar">Ảnh đại diện:</label>
+          <input type="file" class="form-control" id ="avatar" name = "avatar">
+        </div>
+        <br>
+
+        <input type="submit" value="Đăng Ký" class="btn btn-danger">
+  </form>
+  </div>
+{%endblock%}

@@ -1,22 +1,37 @@
-
-    <nav>
-        <div class="nav-tieu-de">
-            <h2>Quản Lý Khách Sạn</h2>
-        </div>
-        <ul>
-            <li><a href=""><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-            <li><a href=""><i class="fa fa-calendar" aria-hidden="true"></i> Book Room</a></li>
-            <div class ="dropdown">
-            <li><a href=""><i class="fa fa-address-book-o"aria-hidden="true"></i> List Room</a></li>
+<nav>
+    <div class="nav-tieu-de">
+        <h2>Quản Lý Khách Sạn</h2>
+    </div>
+    <ul>
+        <li><a href=""><i class="fa fa-home" aria-hidden="true"></i> TRANG CHỦ</a></li>
+        <li><a href=""><i class="fa fa-calendar" aria-hidden="true"></i> VỀ CHÚNG TÔI</a></li>
+        <div class="dropdown">
+            <li><a href=""><i class="fa fa-address-book-o" aria-hidden="true"></i>DANH SÁCH LOẠI PHÒNG</a></li>
             <div class="dropdown-content">
-                 {% for l in loaiphong  %}
-                 <a href="{{url_for('index',loaiPhong_id = l.id)}}">{{l.name}}</a>
-                  {%endfor%}
+                {% for l in loaiphong %}
+                <a href="{{url_for('index',loaiPhong_id = l.id)}}">{{l.name}}</a>
+                {%endfor%}
             </div>
+        </div>
+
+        <li><a href=""><i class="fa fa-telegram" aria-hidden="true"></i> TIN TỨC & SỰ KIỆN</a></li>
+         {%if current_user.is_authenticated%}
+                 {% if current_user.avatar %}
+               <img src="{{current_user.avatar}}" width="30" alt="{{current_user.name}}">
+               {%else%}
+                <img src="{{url_for('static', filename = 'image/avatar.jfif')}}" width="30" alt="{{current_user.name}}">
+               {% endif %}
+               {{ current_user.username}}
+                <li><a href="{{url_for('user_signout')}}"><i class="fa fa-telegram" aria-hidden="true"></i>ĐĂNG XUẤt</a></li>
+        {%else%}
+        <div class="dropdown">
+            <li><a href=""><i class="fa fa-address-book-o" aria-hidden="true"></i>Đăng KÝ/ ĐĂNG NHẬP</a></li>
+            <div class="dropdown-content">
+                <a href="{{url_for('user_register')}}">ĐĂNG KÝ</a>
+                <a href="{{url_for('login_my_user')}}">ĐĂNG NHẬP</a>
             </div>
-            <li><a href=""><i class="fa fa-telegram" aria-hidden="true"></i> News</a></li>
-            <li><a href=""><i class="fa fa-globe" aria-hidden="true"></i> English</a></li>
-            <li><a href=""><i class="fa fa-info" aria-hidden="true"></i> About Us</a></li>
-        </ul>
-    </nav>
+        </div>
+        {%endif%}
+    </ul>
+</nav>
 

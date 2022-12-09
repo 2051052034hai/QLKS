@@ -1,5 +1,6 @@
-from app.models import LoaiPhong, Phong,User
-from app import db,app,dao
+from app.models import LoaiPhong, Phong,User, KhachHang
+from app import db,app
+from  flask import  request
 from flask_login import current_user
 import hashlib
 
@@ -29,11 +30,25 @@ def get_phong_by_id(phong_id):
     return Phong.query.get(phong_id)
 
 def auth_user(username, password):
-    password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    if username and password:
+        password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
 
-    return User.query.filter(User.username.__eq__(username.strip()),
-                             User.password.__eq__(password)).first()
+        return User.query.filter(User.username.__eq__(username.strip()),
+                                 User.password.__eq__(password)).first()
 
 
 def get_user_by_id(user_id):
     return User.query.get(user_id)
+
+def add_user(name, username, password, **kwargs):
+    password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    user = KhachHang(name = name.strip(),
+                username = username.strip(),
+                password = password,
+                email = kwargs.get('email'),
+                diaChi = kwargs.get('diaChi'),
+                cmnd = kwargs.get('cmnd'),
+                avatar = kwargs.get('avatar'))
+    db.session.add(user)
+    db.session.commit()
+
