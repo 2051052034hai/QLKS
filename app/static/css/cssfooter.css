@@ -1,33 +1,216 @@
-div.all-footer{
-    background-color:#5e3929;
-    padding:3%;
-    margin-top:20px;
-}
-
-div.all-content{
-    display:flex;
-    padding:1%;
+section {
+    width: 100%;
+    display: inline-block;
+    background: #5e3929;
+    height: 50vh;
     text-align: center;
-}
-div.all-content > div{
-    width: 50%;
-}
-div.all-content > div > a{
-    font:bold;
-    color:white;
-    text-decoration:none;
-}
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .footer-distributed{
+    background: #5e3929;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 55px 50px;
+  }
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .footer-distributed .footer-left{
+    width: 40%;
+  }
+
+  .footer-distributed h3{
+    color:  #ffffff;
+    font-size: 40px;
+    margin: 0;
+  }
+
+  .footer-distributed h3 span{
+    color:  black;
+    margin-left: 5px;
+  }
+
+  .footer-distributed .footer-links{
+    color:  #ffffff;
+    margin: 20px 0 12px;
+    padding: 0;
+  }
+
+  .footer-distributed .footer-links a{
+    display:inline-block;
+    line-height: 1.8;
+    font-weight:400;
+    text-decoration: none;
+    color:  inherit;
+  }
+
+  .footer-distributed .footer-company-name{
+    color:  #222;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  .footer-distributed .footer-center{
+    width: 35%;
+  }
+
+  .footer-distributed .footer-center i{
+    background-color:  #33383b;
+    color: #ffffff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+  }
+
+  .footer-distributed .footer-center i.fa-envelope{
+    font-size: 17px;
+    line-height: 38px;
+  }
+
+  .footer-distributed .footer-center p{
+    display: inline-block;
+    color: #ffffff;
+    font-weight:400;
+    vertical-align: middle;
+    margin:0;
+  }
+
+  .footer-distributed .footer-center p span{
+    display:block;
+    font-weight: normal;
+    font-size:14px;
+    line-height:2;
+  }
+
+  .footer-distributed .footer-center p a{
+    color:  rgb(255, 255, 255);
+    text-decoration: none;
+  }
+  .footer-distributed .footer-center p a:hover{
+      color:  rgb(0, 0, 0);
+      text-decoration: underline;
+      transition: all 0.5s;
+    }
+
+  .footer-distributed .footer-links a:before {
+    content: "|";
+    font-weight:300;
+    font-size: 20px;
+    left: 0;
+    color: #fff;
+    display: inline-block;
+    padding-right: 5px;
+  }
+
+  .footer-distributed .footer-links .link-1:before {
+    content: none;
+  }
 
 
+  .footer-distributed .footer-right{
+    width: 20%;
+  }
 
-div.all-footer > h3 {
-   padding-top:2%;
-   font-size:15px;
-    text-align:center;
-    font:bold;
-    color:white;
-}
-div.all-footer > h3 > a{
-    text-decoration:none;
+  .footer-distributed .footer-company-about{
+    line-height: 20px;
+    color:  #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+  }
 
-}
+  .footer-distributed .footer-company-about span{
+    display: block;
+    color:  #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .footer-distributed .footer-icons{
+    margin-top: 25px;
+  }
+
+  .footer-distributed .footer-icons a{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color:  #33383b;
+    border-radius: 2px;
+
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+
+    margin-right: 3px;
+    margin-bottom: 5px;
+  }
+  .footer-distributed .footer-icons a:hover:first-child{
+      background-color:  #065d93;
+      transition: all 0.5s;
+  }
+  .footer-distributed .footer-icons a:hover:nth-child(2){
+      background-color:  #048ce0;
+      transition: all 0.5s;
+  }
+  .footer-distributed .footer-icons a:hover:nth-child(3){
+      background-color:  #09659e;
+      transition: all 0.5s;
+  }
+  .footer-distributed .footer-icons a:hover:last-child{
+      background-color:  #101010;
+      transition: all 0.5s;
+  }
+  .footer-links a:hover{
+      text-decoration: underline;
+      color: black;
+      transition: all 0.7s;
+  }
+
+
+  /* GO to top */
+ div.gototop > a i{
+    color: black;
+    border: 3px solid black;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 30px;
+     font-weight: 100;
+     width: 50px;
+     height: 50px;
+     border-radius: 50px;
+ }
+ #gototop{
+    right: 20px;
+    bottom: 20px;
+    z-index: 30;
+    position: fixed;
+ }
+ div.gototop > a i:hover{
+     background-color: black;
+     color: white;
+     border: 1px solid black;
+     transition: all .5s;
+ }
+  div.gototop > a{
+    text-decoration: none;
+  }

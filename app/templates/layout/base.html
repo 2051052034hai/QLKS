@@ -5,16 +5,19 @@
     <title>
         {%block title %} {%endblock%}
     </title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <link href="{{url_for('static', filename = 'css/css_nav.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename = 'css/cssfooter.css')}}" rel="stylesheet">
-     <link href="{{url_for('static', filename = 'css/body_css.css')}}" rel="stylesheet">
-
+    <link href="{{url_for('static', filename = 'css/body_css.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/all.js') }}"></script>
 
     {% block css %} {%endblock%}
-    {% block js %} {%endblock%}
+    {% block js %}
+    {%endblock%}
 </head>
 <body>
 {% block header %}
@@ -29,4 +32,21 @@
 {% include 'layout/footer.html'%}
 {%endblock%}
 </body>
+
+<script>
+    $(document).ready(function() {
+    $("#gototop").hide()
+    $(window).scroll(function() {
+      if ($(this).scrollTop() >= 500)
+        $("#gototop").slideDown("3000")
+      else
+        $("#gototop").slideUp("3000")
+    })
+    $("#gototop").click(function() {
+        $("html, body").animate({
+          scrollTop: 0
+        },1000);
+    })
+  })
+</script>
 </html>
