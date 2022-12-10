@@ -4,14 +4,13 @@
 }
 /*DUOI DAY LA CSS CHO PHAN SAN PHAM*/
 div.row{
-margin:0px !important;
-padding:0px !important;
+margin:0px;
+padding:0px;
 justify-content:space-between;
 }
 div.row > div{
-padding:0px !important;
-margin:0.5% !important;
-background-color:#FFFFCC;
+padding:0px ;
+margin:0.5% ;
 width:32%;
 }
 /*DUOI DAY LA CSS CHO PHAN ANH TRANG TRI*/

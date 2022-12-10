@@ -16,7 +16,7 @@
 
         <li><a href=""><i class="fa fa-telegram" aria-hidden="true"></i> TIN TỨC & SỰ KIỆN</a></li>
          {%if current_user.is_authenticated%}
-                 {% if current_user.avatar %}
+        `      {% if current_user.avatar %}
                <img src="{{current_user.avatar}}" width="30" alt="{{current_user.name}}">
                {%else%}
                 <img src="{{url_for('static', filename = 'image/avatar.jfif')}}" width="30" alt="{{current_user.name}}">

@@ -1,0 +1,23 @@
+h1.info-text{
+    color:white;
+    padding:20px;
+    margin-top:70px;
+    background-color:brown;
+}
+
+div.form-true > input{
+width: 60%;
+}
+
+div.row{
+justify-content: flex-start !important;
+}
+
+
+div.col-md-6{
+width: 49% !important;
+}
+
+div.info-user{
+padding:20px !important;
+}
