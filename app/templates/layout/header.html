@@ -25,13 +25,13 @@
                 <li><a href="{{url_for('user_signout')}}"><i class="fa fa-telegram" aria-hidden="true"></i>ĐĂNG XUẤt</a></li>
         {%else%}
         <div class="dropdown">
-            <li><a href=""><i class="fa fa-address-book-o" aria-hidden="true"></i>Đăng KÝ/ ĐĂNG NHẬP</a></li>
+            <li><a href=""><i class="fa fa-address-book-o" aria-hidden="true"></i>Đăng K
+        {%endif%}Ý/ ĐĂNG NHẬP</a></li>
             <div class="dropdown-content">
                 <a href="{{url_for('user_register')}}">ĐĂNG KÝ</a>
                 <a href="{{url_for('login_my_user')}}">ĐĂNG NHẬP</a>
             </div>
         </div>
-        {%endif%}
     </ul>
 </nav>
 

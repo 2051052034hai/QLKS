@@ -7,31 +7,17 @@
 {%endblock%}
 {% block content %}
 <!-- đây là phần html thanh giỏ hàng -->
-<div class="all_all" id = "all">
+<div class="gio_hang" id="gio">
     <h4>Giỏ hàng</h4>
-  <div class="all_cart">
-  <div class="media">
-    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="./bai_tap/images5/anh khuyen mai 1.jpg" style="width: 40px; height: 40px;"> </a>
-    <h5>ten san pham</h5>
-  </div>
-  <div class="conten-cart">
-    <td class="col-sm-1 col-md-1 text-center"><strong>Ngày nhận phòng: </strong>5/12/2022</td>
-    <td class="col-sm-1 col-md-1 text-center"><strong>Ngày nhận phòng:</strong>5/12/2022</td>
-    <td class="col-sm-1 col-md-1 text-center"><strong>Số Ngày Thuê:</strong>10</td>
-    <td class="col-sm-1 col-md-1 text-center"><strong>Đơn giá:</strong>5000000</td>
-    <button type="button" class="btn btn-danger" style="font-size: 10px">xoá</button>
-  </div>
+    <div class="all_all" id="all"></div>
+    <button class="xem_ct" type="submit" class="btn btn-primary" onclick="">Xem chi tiết</button>
 </div>
-
-<button class ="xem_ct" type="submit" class="btn btn-primary"  onclick="">Xem chi tiết</button>
-</div>
-
 <!-- đây là phần html Thông tin phòng đặt -->
 
 <h1 class="text-center info-text">Thông Tin Đặt Phòng</h1>
 <div class="row" style="margin-top:50px; margin-bottom:50px">
     <div class="col-md-6 col-xs-12">
-        <img style="width:100%" class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
+        <img id="img" style="width:100%" class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
 
         <form method="" action="">
             <div class="form-group">
@@ -45,22 +31,29 @@
 
             <div class="form-group">
                 <label for="soluong" class="form-label">Số lượng khách:</label>
-                <input placeholder="Nhập tối đa là 3 khách" type="text" class="form-control" id="soluong" name="soluong" required>
-            </div>
-                <br>
-            <div class="form-group">
-                <label>Khách nước ngoài: </label>
-                <input type="checkbox" name="" value=""/>
+                <input placeholder="Nhập tối đa là 3 khách" type="text" class="form-control" id="soluong" name="soluong"
+                       required>
             </div>
             <br>
-             <button type="submit" class="btn btn-primary"  onclick="addtocart({{p.id}},'{{p.tenPhong}}', {{p.donGia}})">Đặt Phòng</button>
+            <div class="form-group">
+                <label>Loại Khách:</label>
+                <p>Quy định: khách trong nước: 1, Khách nước ngoài: 2</p>
+                <select id = "select" name="">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary"
+                    onclick="addtocart({{p.id}},'{{p.tenPhong}}',{{p.LoaiPhong.donGia}})">Đặt Phòng
+            </button>
         </form>
 
     </div>
 
     <div class="col-md-6 col-xs-12 info-user">
         <h4 class="card-title">{{ p.tenPhong }}</h4>
-        <p class="card-text">{{p.maLoaiPhong.donGia }} VNĐ\Ngày</p>
+        <p class="card-text">{{p.LoaiPhong.donGia }} VNĐ\Ngày</p>
         <p class="card-text">{{p.moTa}}</p>
 
         <form>

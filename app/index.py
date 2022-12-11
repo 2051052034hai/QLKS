@@ -10,14 +10,7 @@ from app.admin import *
 
 @app.route("/")
 def index():
-    ma_lp = request.args.get('maLoaiPhong')
-    lp_id = request.args.get('loaiPhong_id')
-    page = request.args.get('page', 1)
-    phong = dao.load_Phong(ma_lp=ma_lp, lp=lp_id, page=int(page))
-    couter = dao.count_phong()
-    return render_template('index.html',
-                           phong=phong,
-                           pages=math.ceil(couter / app.config['PAGE_SIZE']))
+    return render_template('index.html')
 
 
 @app.route("/phong/<int:phong_id>")
@@ -26,7 +19,8 @@ def phong_detail(phong_id):
 
     return render_template('phong_detail.html', p=phong)
 
-@app.route('/user-login', methods=['get','post'])
+
+@app.route('/user-login', methods=['get', 'post'])
 def login_my_user():
     err_msg = ''
     if request.method == 'POST':
@@ -43,7 +37,7 @@ def login_my_user():
             return redirect(url_for('index'))
         else:
             err_msg = "username hoặc password không chính xác!"
-    return render_template('login.html', err_msg = err_msg)
+    return render_template('login.html', err_msg=err_msg)
 
 
 @app.route('/login-admin', methods=['post'])
@@ -61,13 +55,23 @@ def login_admin():
 def load_user(user_id):
     return dao.get_user_by_id(user_id)
 
+
 @app.route('/user-logout')
 def user_signout():
     logout_user()
     return redirect(url_for('login_my_user'))
+
+
 @app.context_processor
 def common_response():
+    ma_lp = request.args.get('maLoaiPhong')
+    lp_id = request.args.get('loaiPhong_id')
+    page = request.args.get('page', 1)
+    phong = dao.load_Phong(ma_lp=ma_lp, lp=lp_id, page=int(page))
+    counter = dao.count_phong()
     return {
+        'phong': phong,
+        'pages': math.ceil(counter / app.config['PAGE_SIZE']),
         'loaiphong': dao.load_LoaiPhong()
     }
 
@@ -104,7 +108,7 @@ def user_register():
     return render_template('register.html', err_msg=err_msg)
 
 
-@app.route('/api/add-cart', methods = ['post'])
+@app.route('/api/add-cart', methods=['post'])
 def add_to_cart():
     data = request.json
     err_msg = ""
@@ -114,6 +118,8 @@ def add_to_cart():
     soNgayThue = data.get('soNgayThue')
     ngayNhanPhong = data.get('ngayNhanPhong')
     ngayTraPhong = data.get('ngayTraPhong')
+    soLuong = data.get('soLuongKhach')
+    loaiKhach = data.get('loaiKhach')
     cart = session.get('cart')
 
     if not cart:
@@ -126,9 +132,12 @@ def add_to_cart():
             'id': id,
             'tenPhong': tenPhong,
             'donGia': donGia,
-            'ngayNhanPhong':ngayNhanPhong,
-            'ngayTraPhong':ngayTraPhong,
-            'soNgayThue': soNgayThue
+            'ngayNhanPhong': ngayNhanPhong,
+            'ngayTraPhong': ngayTraPhong,
+            'soNgayThue': soNgayThue,
+            'soLuongKhach': soLuong,
+            'loaiKhach':loaiKhach,
+
         }
     session['cart'] = cart
 

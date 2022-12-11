@@ -16,7 +16,7 @@ class UserRoleEnum(UserEnum):
 
 class LoaiPhong(baseModel):
     tenLoaiPhong=Column(String(50),default=False)
-    donGia=Column(BigInteger,default=True)
+    donGia=Column(Integer,default=True)
     lp_p=relationship('Phong',backref='LoaiPhong',lazy=False)
 
 
@@ -69,6 +69,37 @@ class HoaDon(baseModel):
 if __name__ == '__main__':
     with app.app_context():
         # db.create_all()
+
+        lp1 = LoaiPhong(tenLoaiPhong='Phòng gia đình', donGia=3000000)
+        lp2 = LoaiPhong(tenLoaiPhong='Phòng cổ điển', donGia=3000000)
+        lp3 = LoaiPhong(tenLoaiPhong='Phòng cơ sở', donGia=3000000)
+        lp4 = LoaiPhong(tenLoaiPhong='Phòng điều hành', donGia=3000000)
+
+        db.session.add_all([lp1, lp2, lp3,lp4])
+        db.session.commit()
+
+        p1 = Phong(tenPhong="Phòng gia đình", ghiChu='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
+                   image='https://res.cloudinary.com/dcteoaxmv/image/upload/v1670237774/Family_tviwwj.jpg',
+                   maLoaiPhong=1)
+        p2 = Phong(tenPhong="Phòng cơ sở", ghiChu='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
+                   image='https://res.cloudinary.com/dcteoaxmv/image/upload/v1670237774/Family_tviwwj.jpg',
+                   maLoaiPhong=3)
+
+        p3 = Phong(tenPhong="Phòng cổ điển", ghiChu='Thoải mái & ấm cúng, có thể chứa tối đa 2 người.',
+                   image='https://res.cloudinary.com/dcteoaxmv/image/upload/v1670237774/Family_tviwwj.jpg',
+                   maLoaiPhong=2)
+
+        db.session.add(p1)
+        db.session.add(p2)
+        db.session.add(p3)
+        db.session.commit()
+
+        lk1 = LoaiKhach(tenLoaiKhach="nuoc ngoai")
+        lk2 = LoaiKhach(tenLoaiKhach="trong nuoc")
+        db.session.add_all([lk1, lk2])
+        db.session.commit()
+
+
 
         import hashlib
 

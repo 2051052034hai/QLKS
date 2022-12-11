@@ -43,18 +43,29 @@ def get_user_by_id(user_id):
 def count_cart(cart):
 
     tienThue, tongTien = 0, 0
+    soluong = 0,
     if cart:
         for c in cart.values():
+            tenPhong = c['tenPhong']
             ngayNhan = c['ngayNhanPhong']
             ngayTra = c['ngayTraPhong']
             soNgayThue = c['soNgayThue']
-            tienThue = c['soNgayThue'] * c['donGia']
+            soluong = c['soLuongKhach']
+            loaiKhach = c['loaiKhach']
+            tienThue = c['soNgayThue'] * c['donGia'];
+            if soluong == 3:
+                tienThue = float(tienThue * 0.25);
+            if loaiKhach == 2:
+                tienThue = float(tienThue * 1.5);
             tongTien += tienThue;
 
         return {
+            'tenPhong': tenPhong,
             'ngayNhanPhong':ngayNhan,
             'ngayTraPhong': ngayTra,
             'soNgayThue':soNgayThue,
+            'soluong':soluong,
+            'loaiKhach':loaiKhach,
             'tienThue':tienThue,
             'tongTien':tongTien
         }

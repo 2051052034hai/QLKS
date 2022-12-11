@@ -5,7 +5,7 @@ div.conten-cart{
     font-size: 12px;
 
    }
-   div.conten-cart > button{
+   div.content-cart > button{
     padding-top:0px;
     padding-bottom: 0px;
     font-size:10px !important;
@@ -33,26 +33,34 @@ div.conten-cart{
     width: 100%;
     margin:0.7%;
    }
-   div.all_all{
+   div.gio_hang{
     width: 35%;
     position: absolute;
-    right: 0px;
+    right:-100%;
     top:30%;
     border: 1px solid black;
     background-color:white;
+    position:fixed;
 
    }
-   div.all_all > h4{
+   div.all_all{
+    width: 100%;
+   }
+   div.gio_hang > h4{
     width: 100%;
     text-align: center;
     background-color: brown;
     color:white;
     padding: 5px;
-
    }
    .xem_ct{
     background-color:brown;
     width:100%;
     color: white;
     font-weight: bold;
+   }
+
+   .style_class{
+    position:fixed;
+    right:5px !important;
    }
