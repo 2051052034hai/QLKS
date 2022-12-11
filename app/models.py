@@ -26,7 +26,7 @@ class Phong(baseModel):
     ghiChu=Column(String(300))
     maLoaiPhong=Column(Integer,ForeignKey(LoaiPhong.id))
     image = Column(String(100))
-    lp_slptpd = relationship('SoLuongPhongTrongPhieuDat', backref='Phong', lazy=False)
+    lp_slptpd = relationship('ChiTietPhieuDat', backref='Phong', lazy=False)
 
 class User(baseModel, UserMixin):
     name=Column(String(50),default=False)
@@ -48,13 +48,13 @@ class KhachHang(User):
 class PhieuDatPhong(baseModel):
     ngayNhanPhong=Column(DateTime,default=datetime.now())
     ngayTraPhong=Column(DateTime)
-    pdp_slptpd=relationship('SoLuongPhongTrongPhieuDat',backref='PhieuDatPhong',lazy=False)
+    pdp_slptpd=relationship('ChiTietPhieuDat',backref='PhieuDatPhong',lazy=False)
     pdp_hd=relationship('HoaDon',backref='PhieuDatPhong',lazy=False)
     maKhachHang=Column(Integer,ForeignKey(KhachHang.id))
 
-class SoLuongPhongTrongPhieuDat(baseModel):
-    soLuongPhong=Column(Integer,default=False)
-    malOaiPhong=Column(Integer,ForeignKey(Phong.id))
+class ChiTietPhieuDat(baseModel):
+    soLuongKhachToiDa=Column(Integer,default=False)
+    maloaiPhong=Column(Integer,ForeignKey(Phong.id))
     maPhieuDat=Column(Integer,ForeignKey(PhieuDatPhong.id))
 
 
@@ -65,7 +65,6 @@ class HoaDon(baseModel):
     maPhieuDat=Column(Integer,ForeignKey(PhieuDatPhong.id),)
     ngayThanhToan=Column(DateTime)
 
-
 if __name__ == '__main__':
     with app.app_context():
         # db.create_all()
@@ -73,11 +72,16 @@ if __name__ == '__main__':
         import hashlib
 
         password = str(hashlib.md5('123456'.encode('utf-8')).hexdigest())
-        U = User(name='VA', email='dasdfjosa@gmail.com', username='admin', password=password,
+        # U = User(name='VA', email='dasdfjosa@gmail.com', username='admin', password=password,
+        #          diaChi='DFJSAFOIASJFOIAS',
+        #          cmnd='345345345',avatar='fdsfasfasfasfsafsa',
+        #          user_role=UserRoleEnum.ADMIN, active=1)
+        U1 = User(name='VA1', email='dasdfjosa@gmail.com', username='employee1', password=password,
                  diaChi='DFJSAFOIASJFOIAS',
-                 cmnd='345345345',avatar='fdsfasfasfasfsafsa',
-                 user_role=UserRoleEnum.ADMIN, active=1)
+                 cmnd='345345345', avatar='fdsfasfasfasfsafsa',
+                 user_role=UserRoleEnum.EMPLOYEE, active=1)
 
-        db.session.add(U)
+        # db.session.add(U)
+        db.session.add(U1)
         db.session.commit()
 
