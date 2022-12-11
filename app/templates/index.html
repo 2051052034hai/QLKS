@@ -71,7 +71,11 @@
             <img class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
             <div class="card-body">
                 <h4 class="card-title">{{ p.tenPhong }}</h4>
+<<<<<<< HEAD
                 <p class="card-text">{{p.LoaiPhong.donGia}} VNĐ\Ngày</p>
+=======
+                <p class="card-text">{{p.LoaiPhong.donGia }} VNĐ\Ngày</p>
+>>>>>>> 5fde6f9daac43d264f7a245ef9bb0058e1e195c8
                 <p class="card-text">{{p.moTa}}</p>
                 <a href="{{url_for('phong_detail', phong_id = p.id)}}" class="btn btn-danger">Đặt bây giờ</a>
 
