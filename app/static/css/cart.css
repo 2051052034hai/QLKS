@@ -1,0 +1,58 @@
+div.conten-cart{
+    align-items: centers;
+    width: 85%;
+    margin-top: 1%;
+    font-size: 12px;
+
+   }
+   div.conten-cart > button{
+    padding-top:0px;
+    padding-bottom: 0px;
+    font-size:10px !important;
+   }
+   div.media{
+    align-items: centers;
+    display: flex;
+    width: 25%;
+    padding: 0px;
+   }
+   div.media > h5{
+    font-size:15px;
+    margin-top:5%;
+    padding-left:10px;
+   }
+   div.media > a{
+    width: 50px;
+    padding: 0;
+    margin:0;
+   }
+   div.all_cart{
+    display: flex;
+    padding: 10px;
+    border: 1px solid black;
+    width: 100%;
+    margin:0.7%;
+   }
+   div.all_all{
+    width: 35%;
+    position: absolute;
+    right: 0px;
+    top:30%;
+    border: 1px solid black;
+    background-color:white;
+
+   }
+   div.all_all > h4{
+    width: 100%;
+    text-align: center;
+    background-color: brown;
+    color:white;
+    padding: 5px;
+
+   }
+   .xem_ct{
+    background-color:brown;
+    width:100%;
+    color: white;
+    font-weight: bold;
+   }

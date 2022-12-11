@@ -40,6 +40,24 @@ def auth_user(username, password):
 def get_user_by_id(user_id):
     return User.query.get(user_id)
 
+def count_cart(cart):
+
+    tienThue, tongTien = 0, 0
+    if cart:
+        for c in cart.values():
+            ngayNhan = c['ngayNhanPhong']
+            ngayTra = c['ngayTraPhong']
+            soNgayThue = c['soNgayThue']
+            tienThue = c['soNgayThue'] * c['donGia']
+            tongTien += tienThue;
+
+        return {
+            'ngayNhanPhong':ngayNhan,
+            'ngayTraPhong': ngayTra,
+            'soNgayThue':soNgayThue,
+            'tienThue':tienThue,
+            'tongTien':tongTien
+        }
 def add_user(name, username, password, **kwargs):
     password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
     user = User(name = name.strip(),

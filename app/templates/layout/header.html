@@ -9,7 +9,7 @@
             <li><a href=""><i class="fa fa-address-book-o" aria-hidden="true"></i>DANH SÁCH LOẠI PHÒNG</a></li>
             <div class="dropdown-content">
                 {% for l in loaiphong %}
-                <a href="{{url_for('index',loaiPhong_id = l.id)}}">{{l.name}}</a>
+                <a href="{{url_for('index',loaiPhong_id = l.id)}}">{{l.tenLoaiPhong}}</a>
                 {%endfor%}
             </div>
         </div>

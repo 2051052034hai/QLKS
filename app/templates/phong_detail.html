@@ -3,44 +3,64 @@
 {%block title%} CHI TIET DAT PHONG {%endblock%}
 {% block css %}
 <link href="{{url_for('static', filename = 'css/phong_detail.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename = 'css/cart.css')}}" rel="stylesheet">
 {%endblock%}
 {% block content %}
+<!-- đây là phần html thanh giỏ hàng -->
+<div class="all_all" id = "all">
+    <h4>Giỏ hàng</h4>
+  <div class="all_cart">
+  <div class="media">
+    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="./bai_tap/images5/anh khuyen mai 1.jpg" style="width: 40px; height: 40px;"> </a>
+    <h5>ten san pham</h5>
+  </div>
+  <div class="conten-cart">
+    <td class="col-sm-1 col-md-1 text-center"><strong>Ngày nhận phòng: </strong>5/12/2022</td>
+    <td class="col-sm-1 col-md-1 text-center"><strong>Ngày nhận phòng:</strong>5/12/2022</td>
+    <td class="col-sm-1 col-md-1 text-center"><strong>Số Ngày Thuê:</strong>10</td>
+    <td class="col-sm-1 col-md-1 text-center"><strong>Đơn giá:</strong>5000000</td>
+    <button type="button" class="btn btn-danger" style="font-size: 10px">xoá</button>
+  </div>
+</div>
+
+<button class ="xem_ct" type="submit" class="btn btn-primary"  onclick="">Xem chi tiết</button>
+</div>
+
+<!-- đây là phần html Thông tin phòng đặt -->
+
 <h1 class="text-center info-text">Thông Tin Đặt Phòng</h1>
 <div class="row" style="margin-top:50px; margin-bottom:50px">
     <div class="col-md-6 col-xs-12">
         <img style="width:100%" class="card-img-top" src="{{ p.image }}" alt="{{ p.tenPhong }}">
 
-        <form method="post" action="">
-             <div class="mb-3 mt-3">
-              <label for="ngayNhan" class="form-label">Ngày Nhận phòng:</label>
-              <input type="date" class="form-control" id="ngayNhan" name="ngayNhan">
+        <form method="" action="">
+            <div class="form-group">
+                <label for="ngayNhan" class="form-label">Ngày Nhận phòng:</label>
+                <input type="date" class="form-control" id="ngayNhan" name="ngayNhan" required>
             </div>
-            <div class="mb-3 mt-3">
-              <label for="ngayTra" class="form-label">Ngày trả phòng:</label>
-              <input type="date" class="form-control" id="ngayTra" name="ngayTra">
-            </div>
-
-            <div class="mb-3 mt-3">
-              <label for="soluong" class="form-label">Số lượng khách:</label>
-              <input placeholder="Nhập tối đa là 3 khách" type="text" class="form-control" id="soluong" name="soluong">
+            <div class="form-group">
+                <label for="ngayTra" class="form-label">Ngày trả phòng:</label>
+                <input type="date" class="form-control" id="ngayTra" name="ngayTra" required>
             </div>
 
-            <label>Khách nước ngoài: </label>
-            <input type="checkbox" name="" value="" />
+            <div class="form-group">
+                <label for="soluong" class="form-label">Số lượng khách:</label>
+                <input placeholder="Nhập tối đa là 3 khách" type="text" class="form-control" id="soluong" name="soluong" required>
+            </div>
+                <br>
+            <div class="form-group">
+                <label>Khách nước ngoài: </label>
+                <input type="checkbox" name="" value=""/>
+            </div>
             <br>
-             <br>
-            <div class="container" style="width:200px">
-              <a href="javascript:;" onclick="addToCart({{ p.id }}, '{{ p.name }}', {{ p.price }})"
-                 class="btn btn-danger">Đặt Phòng</a>
-            </div>
-
-      </form>
+             <button type="submit" class="btn btn-primary"  onclick="addtocart({{p.id}},'{{p.tenPhong}}', {{p.donGia}})">Đặt Phòng</button>
+        </form>
 
     </div>
 
     <div class="col-md-6 col-xs-12 info-user">
         <h4 class="card-title">{{ p.tenPhong }}</h4>
-        <p class="card-text">{{ "{:,.1f}".format(p.donGia) }} VNĐ</p>
+        <p class="card-text">{{p.maLoaiPhong.donGia }} VNĐ\Ngày</p>
         <p class="card-text">{{p.moTa}}</p>
 
         <form>
@@ -53,12 +73,12 @@
                 <input value="{{current_user.email}}" type="text" class="form-control" id="Email" name="Email">
             </div>
             <br>
-              <div class="form-group form-true">
+            <div class="form-group form-true">
                 <label for="cmnd">Số CMND: </label>
                 <input value="{{current_user.cmnd}}" type="text" class="form-control" id="cmnd" name="cmnd">
 
                 <label for="adress">Địa Chỉ: </label>
-                <input  value="{{current_user.diaChi}}" type="text" class="form-control" id="adress" name="adress">
+                <input value="{{current_user.diaChi}}" type="text" class="form-control" id="adress" name="adress">
             </div>
 
         </form>

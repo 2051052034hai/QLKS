@@ -1,7 +1,7 @@
 import math
 
 import cloudinary.uploader
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from app import app, dao, login
 from flask_login import login_user, logout_user, login_required, current_user
 from app.decorators import annonymous_user
@@ -102,6 +102,37 @@ def user_register():
             err_msg = "Hệ thống đang có lỗi" + str(ex)
 
     return render_template('register.html', err_msg=err_msg)
+
+
+@app.route('/api/add-cart', methods = ['post'])
+def add_to_cart():
+    data = request.json
+    err_msg = ""
+    id = str(data.get('id'))
+    tenPhong = data.get('tenPhong')
+    donGia = data.get('donGia')
+    soNgayThue = data.get('soNgayThue')
+    ngayNhanPhong = data.get('ngayNhanPhong')
+    ngayTraPhong = data.get('ngayTraPhong')
+    cart = session.get('cart')
+
+    if not cart:
+        cart = {}
+
+    if id in cart:
+        err_msg = "Bạn đã đặt phòng này rồi !"
+    else:
+        cart[id] = {
+            'id': id,
+            'tenPhong': tenPhong,
+            'donGia': donGia,
+            'ngayNhanPhong':ngayNhanPhong,
+            'ngayTraPhong':ngayTraPhong,
+            'soNgayThue': soNgayThue
+        }
+    session['cart'] = cart
+
+    return jsonify(dao.count_cart(cart))
 
 
 if __name__ == '__main__':
