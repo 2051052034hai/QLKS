@@ -13,10 +13,8 @@ function addtocart(id, tenPhong, donGia){
     var day_nhan = new Date(ngayNhan)
     var day_tra = new Date(ngayTra)
     var soNgayThue = get_day_of_time(day_nhan, day_tra)
-
     var loaiKhach = Number(document.getElementById("select").value)
 
-    console.log(loaiKhach)
     fetch('/api/add-cart',{
     method:'post',
     body: JSON.stringify({
@@ -28,6 +26,7 @@ function addtocart(id, tenPhong, donGia){
         'soNgayThue':soNgayThue,
         'soLuongKhach': soLuong,
         'loaiKhach':loaiKhach,
+
     }),
     headers:{
             'Content-Type': 'application/json'
@@ -62,3 +61,15 @@ function addtocart(id, tenPhong, donGia){
         console.error(err)
     })
 }
+
+function pay(){
+    if (confirm('Bạn có chắc muốn thanh toán hay không ?') == true){
+        fetch('/api/pay',{
+            method:'post'
+            }).then(res => res.json()).then( data => {
+
+                if (data.code == 200)
+                    location.reload()
+            }).catch(err => console.error(err))
+            }
+    }

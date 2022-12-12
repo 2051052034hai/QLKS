@@ -32,9 +32,8 @@ def login_my_user():
 
             login_user(user=user)
 
-            # url_next = request.args.get('next')
-
-            return redirect(url_for('index'))
+            next = request.args.get('next', 'index')
+            return redirect(url_for(next))
         else:
             err_msg = "username hoặc password không chính xác!"
     return render_template('login.html', err_msg=err_msg)
@@ -72,7 +71,8 @@ def common_response():
     return {
         'phong': phong,
         'pages': math.ceil(counter / app.config['PAGE_SIZE']),
-        'loaiphong': dao.load_LoaiPhong()
+        'loaiphong': dao.load_LoaiPhong(),
+        'cart_stats': dao.count_cart(session.get('cart'))
     }
 
 
@@ -121,7 +121,7 @@ def add_to_cart():
     soLuong = data.get('soLuongKhach')
     loaiKhach = data.get('loaiKhach')
     cart = session.get('cart')
-
+    tienThue = ""
     if not cart:
         cart = {}
 
@@ -136,13 +136,29 @@ def add_to_cart():
             'ngayTraPhong': ngayTraPhong,
             'soNgayThue': soNgayThue,
             'soLuongKhach': soLuong,
-            'loaiKhach':loaiKhach,
-
+            'loaiKhach': loaiKhach,
+            'tienThue': tienThue,
         }
     session['cart'] = cart
 
     return jsonify(dao.count_cart(cart))
 
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html', stats=dao.count_cart(session.get('cart')))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+@app.route('/api/pay', methods=['post'])
+def pay():
+    try:
+        dao.add_hoaDon(session.get('cart'))
+        del session['cart']
+    except:
+        return jsonify({'code': 400})
+
+    return jsonify({'code': 200})

@@ -1,0 +1,48 @@
+
+{% extends 'layout/base.html'%}
+{% block title %} CHI TIẾT GIỎ HÀNG{% endblock %}
+{% block content %}
+<h1 class="text-center text-danger" style="margin-top:100px">CHI TIẾT GIỎ HÀNG</h1>
+
+<div class="container" >
+    {%if 'cart' in session and session['cart']%}
+    <table class="table">
+        <tr>
+            <th>Tên phòng</th>
+            <th>Ngày nhận phòng</th>
+            <th>Ngày trả phòng</th>
+            <th>Đơn giá(\ngày)</th>
+            <th>Số ngày thuê</th>
+            <th>Số lượng khách</th>
+            <th>Loại khách</th>
+            <th>Tiền thuê phòng </th>
+        </tr>
+        {% for c in session['cart'].values() %}
+        <tr>
+            <td>{{c.tenPhong}}</td>
+             <td>{{c.ngayNhanPhong}}</td>
+             <td>{{c.ngayTraPhong}}</td>
+             <td>{{"{:,.1f}".format(c.donGia)}} VNĐ</td>
+             <td>{{c.soNgayThue}}</td>
+             <td>{{c.soLuongKhach}}</td>
+             <td>{{c.loaiKhach}}</td>
+             <td>{{"{:,.1f}".format(c.tienThue)}} VNĐ</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="alert alert-info">
+        <h5>Tổng Tiền: {{"{:,.1f}".format(stats.tongTien)}} VNĐ</h5>
+    </div>
+    {% if current_user.is_authenticated %}
+    <input type="button" value="Thanh toán" class="btn btn-danger" onclick="pay()">
+    {%else%}
+    <a href="{{url_for('login_my_user', next = 'cart')}}">Đăng nhập để thanh toán...</a>
+    {%endif%}
+    <br>
+    <br>
+    {% else %}
+        <h3 class="text-center text-danger">Không có sản phầm nào trong giỏ hàng</h3>
+    {%endif%}
+</div>
+{%endblock%}

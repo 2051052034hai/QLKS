@@ -57,10 +57,12 @@ div.conten-cart{
     background-color:brown;
     width:100%;
     color: white;
+    border-radius:10px;
     font-weight: bold;
+    list-style:none;
    }
 
    .style_class{
     position:fixed;
-    right:5px !important;
+    right:-50px !important;
    }

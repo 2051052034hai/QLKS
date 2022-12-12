@@ -10,7 +10,7 @@
 <div class="gio_hang" id="gio">
     <h4>Giỏ hàng</h4>
     <div class="all_all" id="all"></div>
-    <button class="xem_ct" type="submit" class="btn btn-primary" onclick="">Xem chi tiết</button>
+    <a href="{{url_for('cart')}}" class="xem_ct" >Xem chi tiết</a>
 </div>
 <!-- đây là phần html Thông tin phòng đặt -->
 
@@ -30,23 +30,25 @@
             </div>
 
             <div class="form-group">
-                <label for="soluong" class="form-label">Số lượng khách:</label>
-                <input placeholder="Nhập tối đa là 3 khách" type="text" class="form-control" id="soluong" name="soluong"
-                       required>
+                <label for="" class="form-label">Số lượng khách:</label>
+                 <select style="width:100%" id = "soluong" name="">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
             </div>
             <br>
             <div class="form-group">
                 <label>Loại Khách:</label>
                 <p>Quy định: khách trong nước: 1, Khách nước ngoài: 2</p>
-                <select id = "select" name="">
+                <select style="width:100%" id = "select" name="">
                     <option>1</option>
                     <option>2</option>
                 </select>
             </div>
             <br>
             <button type="submit" class="btn btn-primary"
-                    onclick="addtocart({{p.id}},'{{p.tenPhong}}',{{p.LoaiPhong.donGia}})">Đặt Phòng
-            </button>
+                    onclick="addtocart({{p.id}},'{{p.tenPhong}}',{{p.LoaiPhong.donGia}})">Đặt Phòng</button>
         </form>
 
     </div>
