@@ -1,3 +1,4 @@
+
 const get_day_of_time = (d1, d2) => {
     let ms1 = d1.getTime();
     let ms2 = d2.getTime();
@@ -14,6 +15,25 @@ function addtocart(id, tenPhong, donGia){
     var day_tra = new Date(ngayTra)
     var soNgayThue = get_day_of_time(day_nhan, day_tra)
     var loaiKhach = Number(document.getElementById("select").value)
+    var day_check = 28
+    var today = new Date()
+    var check_28_day = get_day_of_time(today, day_nhan)
+
+    if(ngayNhan == '' || ngayTra == '')
+        return confirm("Ngày nhận và trả phòng không được để trống !!");
+
+    if (check_28_day <= 0 )
+        return confirm("Ngày nhận không được nhỏ hơn ngày hiện tại !!");
+
+    if (check_28_day > day_check){
+        return confirm("Ngày nhận phòng không được quá 28 ngày so với hiện tại!!");
+    }
+
+    if(soNgayThue <= 0)
+    {
+        return confirm("Bạn cần nhập số ngày nhận lớn hơn ngày trả!!");
+    }
+
 
     fetch('/api/add-cart',{
     method:'post',
@@ -64,12 +84,18 @@ function addtocart(id, tenPhong, donGia){
 
 function pay(){
     if (confirm('Bạn có chắc muốn thanh toán hay không ?') == true){
+
+
+         console.log("ngfwwafaf")
         fetch('/api/pay',{
             method:'post'
             }).then(res => res.json()).then( data => {
 
+                 console.log(data);
+
                 if (data.code == 200)
                     location.reload()
+
             }).catch(err => console.error(err))
             }
     }

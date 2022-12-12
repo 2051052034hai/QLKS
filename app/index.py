@@ -155,10 +155,7 @@ if __name__ == '__main__':
 
 @app.route('/api/pay', methods=['post'])
 def pay():
-    try:
-        dao.add_hoaDon(session.get('cart'))
-        del session['cart']
-    except:
-        return jsonify({'code': 400})
+    dao.add_hoaDon(session.get('cart'))
+    del session['cart']
 
     return jsonify({'code': 200})

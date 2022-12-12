@@ -1,9 +1,10 @@
 from app.models import LoaiPhong, Phong, User, KhachHang, PhieuDatPhong, ChiTietPhieuDat, LoaiKhach, HoaDon
 from app import db, app
 from flask import request
+from sqlalchemy import func
 from flask_login import current_user
 import hashlib
-
+from sqlalchemy.sql import  extract
 
 def load_LoaiPhong():
     return LoaiPhong.query.all()
@@ -93,13 +94,41 @@ def add_user(name, username, password, **kwargs):
 
 def add_hoaDon(cart):
     if cart:
-        hoaDon = HoaDon(user = current_user)
-        db.session.add(hoaDon)
+        phieuDat = PhieuDatPhong(user=current_user)
+        db.session.add(phieuDat)
 
         for c in cart.values():
-            d = ChiTietPhieuDat(PhieuDatPhong = PhieuDatPhong,
-                                soNgayThue = c['soNgayThue'],
-                                donGia = c['donGia'])
+            d = ChiTietPhieuDat(
+                maPhong= c['id'],
+                soLuongKhachToiDa= c['soLuongKhach'],
+                maPhieuDat=PhieuDatPhong)
+
             db.session.add(d)
+
         db.session.commit()
+
+
+def phong_stats(kw=None, from_date=None, to_date=None):
+    with app.app_context():
+        p = db.session.query(LoaiPhong.id, LoaiPhong.tenLoaiPhong,
+                             func.sum(HoaDon.soNgayThue * HoaDon.donGia)) \
+            .join(HoaDon, HoaDon.id.__eq__(LoaiPhong.id), isouter=True)\
+            .join(PhieuDatPhong, PhieuDatPhong.id.__eq__(HoaDon.id)) \
+            .group_by(LoaiPhong.id)
+        if kw:
+            p = p.filter(LoaiPhong.tenLoaiPhong.contains(kw))
+        if from_date:
+            p = p = p.filter(PhieuDatPhong.ngayNhanPhong.__ge__(from_date))
+        if to_date:
+            p = p = p.filter(PhieuDatPhong.ngayNhanPhong.__le__(to_date))
+
+
+        return p.all()
+
+def product_month_stats(year):
+    with app.app_context():
+        return  db.session.query( extract('month',PhieuDatPhong.ngayNhanPhong), func.sum(HoaDon.soNgayThue * HoaDon.donGia))\
+                 .join(HoaDon, HoaDon.maPhieuDat.__eq__(PhieuDatPhong.id))\
+            .filter(extract('year', PhieuDatPhong.ngayNhanPhong) == year)\
+            .group_by(extract('month', PhieuDatPhong.ngayNhanPhong)).order_by(extract('month',PhieuDatPhong.ngayNhanPhong)).all()
 

@@ -57,11 +57,17 @@ div.conten-cart{
     background-color:brown;
     width:100%;
     color: white;
-    border-radius:10px;
     font-weight: bold;
-    list-style:none;
+    display: block;
+    text-align: center;
+    list-style-type: none;
+    list-style: none;
+    text-decoration: none;
+    padding: 5px;
    }
-
+   .xem_ct:hover{
+     color: red;
+    }
    .style_class{
     position:fixed;
     right:-50px !important;

@@ -1,0 +1,132 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<h1 class="text-center text-danger">THỐNG KÊ DOANH THU !</h1>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-7 col-xs-12">
+
+            <table class="table">
+                <tr>
+                    <th>STT</th>
+                    <th>Loại phòng</th>
+                    <th>Doanh thu</th>
+
+                </tr>
+                {%for s in stats%}
+                <tr>
+                    <td>{{s[0]}}</td>
+                    <td>{{s[1]}}</td>
+                    <td>
+                        {% if s[2] %}
+                        {{"{:,.1f}".format(s[2])}} VNĐ
+                        {%else%}
+                        0 VNĐ
+                        {%endif%}
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+            </table>
+        </div>
+        <div class="col-md-5 col-xs-12">
+
+            <form>
+                <div class="form-group">
+                    <input name="year" type="number" min='2000' class="form-control" placeholder="Nhập năm: ">
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" name="from_date">
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" name="to_date">
+                </div>
+                <input type="submit" value="Thống kê" class="btn btn-info">
+            </form>
+
+
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 col-xs-12">
+            <table class="table">
+                <tr>
+                    <th>Tháng</th>
+                    <th>Doanh thu</th>
+                </tr>
+                {%for s in month_stats %}
+                <tr>
+                    <td>{{s[0]}}</td>
+                    <td> {{"{:,.1f}".format(s[1])}} VNĐ</td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+
+        <div class="col-md-5 col-xs-12">
+            <div>
+
+                <form>
+                    <div class="form-group">
+                        <input name="year" type="number" min='2000' class="form-control" placeholder="Nhập năm: ">
+                    </div>
+                    <input type="submit" value="Thống kê" class="btn btn-danger">
+                </form>
+
+                <canvas id="product_month"></canvas>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let labels = [], info = []
+    let labels2 = [], info2 = []
+    {%for s in stats %}
+        labels.push('{{s[1]}}')
+        {% if s[2] %}
+        info.push({{s[2]}})
+        {%endif%}
+    {%endfor%}
+
+     {%for s in month_stats %}
+        labels2.push({{s[0]}})
+        info2.push({{s[1]}})
+    {%endfor%}
+
+    window.onload = function(){
+        const ctx = document.getElementById('myChart')
+        const ctx2 = document.getElementById('product_month')
+
+        loadChart(ctx,labels, info, 'doughnut')
+        loadChart(ctx2,labels2, info2, 'bar')
+}
+function loadChart(ctx,labels, info, type) {
+     const myChart = new Chart(ctx, {
+            type: type,
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Thống kê doanh thu theo tháng',
+                data: info,
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+    }
+
+
+</script>
+{% endblock %}
+
