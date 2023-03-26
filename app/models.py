@@ -96,9 +96,9 @@ if __name__ == '__main__':
         # lk2 = LoaiKhach(tenLoaiKhach="trong nuoc")
         # db.session.add_all([lk1, lk2])
         # db.session.commit()
-        #
-        #
-        #
+
+
+
         import hashlib
         password = str(hashlib.md5('123456'.encode('utf-8')).hexdigest())
         # U = User(name='VA', email='dasdfjosa@gmail.com', username='admin', password=password,
